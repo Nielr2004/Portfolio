@@ -1,7 +1,8 @@
 
 ## Snehashis's Personal Portfolio
 
-![home_logo](https://github.com/user-attachments/assets/740a61a0-803d-4d96-934f-47c6a3426c54)
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/740a61a0-803d-4d96-934f-47c6a3426c54" alt="Portfolio Header Image/Screenshot" width="200"/> </p>
 Welcome to my personal portfolio website! This platform serves as a central hub to showcase my skills, projects, and provide an easy way to get in touch with me. Built with modern web technologies, it offers a clean, responsive, and interactive user experience.
 
 ## ✨ Features
