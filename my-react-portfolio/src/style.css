@@ -51,11 +51,40 @@ nav {
   backdrop-filter: blur(8px);
   padding: 12px 25px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between; /* Pushes logo left, links right */
+  align-items: center; /* Vertically aligns items */
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-  border-radius: 0;
-  margin: 0;
-  border: none;
+}
+
+.nav-left {
+  display: flex; /* To align logo image and optional site name text */
+  align-items: center; /* Vertically align logo and text */
+}
+
+.logo-link {
+  text-decoration: none; /* Remove underline from the logo link */
+  display: flex; /* Helps align the image and potential text next to it */
+  align-items: center; /* Vertically align contents within the link */
+}
+
+/* Updated: Logo size adjusted, hover effect removed */
+.nav-logo {
+  height: 20px; /* <--- Adjusted height to match nav text font size */
+  width: auto; /* Maintain aspect ratio */
+  vertical-align: middle; /* Helps with alignment */
+  margin-right: 8px; /* Space between logo and site name if you have one */
+  /* transition and transform: scale on hover are removed as requested */
+}
+
+/* Removed: .nav-logo:hover rule entirely */
+
+.site-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 24px;
+  color: #1D3557;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  white-space: nowrap;
 }
 
 nav ul {
@@ -107,103 +136,86 @@ nav a:hover {
 #home {
   padding-top: 80px;
   min-height: 100vh;
-  display: flex; /* Use flexbox for overall home section */
-  flex-direction: column; /* Stack main content (image+text) and button vertically */
-  justify-content: center; /* Center content vertically */
-  align-items: center; /* Center content horizontally */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   position: relative;
   overflow: hidden;
   z-index: 1;
-  text-align: center; /* Default text alignment */
-  background: #F1FAEE; /* Solid light cream background */
+  text-align: center;
+  background: #F1FAEE;
 }
 
-/* IMPORTANT: If you previously had an <img> tag with class "quote-image-background"
-   that was positioned as a background, these styles are now largely obsolete
-   since you are using a content image in the .home-left div.
-   You might want to remove or hide such an element from your HTML. */
-#home .quote-image-background {
-    display: none; /* Hide the old background image if it's no longer used */
-}
+/* Removed: .quote-image-background as it was set to display: none */
+/* Removed: #home::before and #home.blur::before as they were set to content: none */
 
-/* Styles for the new content image in the home section (e.g., niel 5.png) */
 .home-quote-image {
-    max-width: 100%;
-    height: auto;
-    border-radius: 15%; /* Consistent with about image */
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    border: 3px solid #FFD700; /* Yellow border */
-    transition: all 0.3s ease;
-    margin: 20px auto; /* Centered and some vertical space */
-    display: block; /* Ensures margin auto works for centering in its flex container */
+  max-width: 100%;
+  height: auto;
+  border-radius: 15%;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  border: 3px solid #FFD700;
+  transition: all 0.3s ease;
+  margin: 20px auto;
+  display: block;
 }
 
 .home-quote-image:hover {
-    transform: rotate(-5deg) scale(1.05); /* Playful hover for the image */
-    box-shadow: 0 8px 20px rgba(230, 57, 70, 0.2); /* Red accent shadow */
+  transform: rotate(-5deg) scale(1.05);
+  box-shadow: 0 8px 20px rgba(230, 57, 70, 0.2);
 }
 
-/* Remove the background overlay pseudo-element, as layout has changed */
-#home::before {
-  content: none;
-}
-#home.blur::before {
-  content: none;
-}
-
-/* New main content wrapper for side-by-side layout (image on left, text on right) */
 .home-main-content {
-    display: flex;
-    justify-content: space-around; /* Distribute space between items */
-    align-items: center; /* Vertically align items in the row */
-    width: 100%;
-    max-width: 1200px; /* Maximum width for the content row */
-    flex-wrap: wrap; /* Allow wrapping columns on smaller screens */
-    margin-bottom: 50px; /* Space above the button */
-    gap: 40px; /* Gap between image column and text column */
-    padding: 0 20px; /* Horizontal padding for responsiveness */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  flex-wrap: wrap;
+  margin-bottom: 50px;
+  gap: 40px;
+  padding: 0 20px;
 }
 
-/* Styles for the left and right columns within home-main-content */
 .home-left, .home-right {
-    flex: 1; /* Allow them to grow and shrink */
-    min-width: 300px; /* Minimum width before wrapping to next line */
-    text-align: center; /* Center content within these columns */
+  flex: 1;
+  min-width: 300px;
+  text-align: center;
 }
 
 .home-right {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Center its children (typewriter, p) */
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 #home p {
   font-size: 18px;
   margin-bottom: 20px;
-  color: #1D3557; /* Dark blue for paragraph text */
+  color: #1D3557;
 }
 
 .button {
-  /* Vibrant button gradient */
-  background: linear-gradient(135deg, #E63946, #FFD700); /* Red to Yellow */
+  background: linear-gradient(135deg, #E63946, #FFD700);
   backdrop-filter: blur(8px);
-  color: #1D3557; /* Dark blue text on vibrant button */
-  padding: 12px 28px; /* Larger padding */
-  border-radius: 30px; /* More rounded */
+  color: #1D3557;
+  padding: 12px 28px;
+  border-radius: 30px;
   text-decoration: none;
-  font-weight: 700; /* Bolder text */
+  font-weight: 700;
   transition: all 0.3s ease;
-  border: none; /* No border for a cleaner look */
+  border: none;
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  margin-top: 25px; /* More space from content above */
+  margin-top: 25px;
   z-index: 2;
   font-size: 16px;
   text-transform: uppercase;
   letter-spacing: 1px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15); /* Stronger initial shadow */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
 }
 
 .button::before {
@@ -213,7 +225,7 @@ nav a:hover {
   left: 50%;
   width: 0;
   height: 0;
-  background: rgba(0, 0, 0, 0.1); /* Darker ripple for contrast */
+  background: rgba(0, 0, 0, 0.1);
   border-radius: 50%;
   transform: translate(-50%, -50%);
   transition: width 0.5s ease, height 0.5s ease;
@@ -225,29 +237,25 @@ nav a:hover {
 }
 
 .button:hover {
-  /* Reverse gradient for hover */
-  background: linear-gradient(135deg, #FFD700, #E63946); /* Yellow to Red */
+  background: linear-gradient(135deg, #FFD700, #E63946);
   color: #1D3557;
-  transform: scale(1.05) translateY(-3px); /* More pronounced hover */
-  box-shadow: 0 8px 20px rgba(230, 57, 70, 0.2); /* Red accent shadow */
+  transform: scale(1.05) translateY(-3px);
+  box-shadow: 0 8px 20px rgba(230, 57, 70, 0.2);
 }
 
 /* Typewriter styles */
 .typewriter {
-  font-family: 'Bebas Neue', sans-serif; /* Funky heading font */
+  font-family: 'Bebas Neue', sans-serif;
   font-weight: normal;
-  font-size: 3.5rem; /* Larger font size */
-  line-height: 1; /* Tighter line height for Bebas Neue */
-  letter-spacing: 3px; /* More spacing for Bebas Neue */
+  font-size: 3.5rem;
+  line-height: 1;
+  letter-spacing: 3px;
   text-transform: uppercase;
-
-  /* Vibrant gradient for text */
-  background: linear-gradient(90deg, #E63946, #FFD700, #1D3557); /* Red, Yellow, Dark Blue */
+  background: linear-gradient(90deg, #E63946, #FFD700, #1D3557);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
-
   margin: 0;
   min-width: 0;
   text-align: center;
@@ -255,15 +263,14 @@ nav a:hover {
   z-index: 2;
 }
 
-/* The Blinking Cursor */
 .typewriter-cursor {
   display: inline-block;
-  width: 3px; /* Thicker cursor */
-  background-color: #E63946; /* Red cursor */
-  height: 1.1em; /* Adjust to font size */
+  width: 3px;
+  background-color: #E63946;
+  height: 1.1em;
   vertical-align: middle;
-  margin-left: 4px; /* More space */
-  animation: blink 0.7s step-end infinite; /* Faster blink */
+  margin-left: 4px;
+  animation: blink 0.7s step-end infinite;
   transition: opacity 0.3s ease;
 }
 
@@ -273,39 +280,37 @@ nav a:hover {
 
 /* Typewriter box styles */
 .typewriter-box {
-  background: rgba(241, 250, 238, 0.15); /* Cream with more transparency */
-  padding: 25px 35px; /* Slightly larger padding */
-  border-radius: 20px; /* More rounded corners for fun */
-  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15); /* Stronger shadow */
+  background: rgba(241, 250, 238, 0.15);
+  padding: 25px 35px;
+  border-radius: 20px;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
   border: 1px solid rgba(241, 250, 238, 0.3);
-  display: inline-block; /* Allows box to wrap content and center with flex */
-  margin: 0 auto 20px; /* Centers the box, adds space below */
-  max-width: fit-content; /* Make box fit content width */
-  text-align: center; /* Ensure text inside is centered */
-  overflow: hidden; /* Important for backdrop-filter on children in some browsers */
-
+  display: inline-block;
+  margin: 0 auto 20px;
+  max-width: fit-content;
+  text-align: center;
+  overflow: hidden;
   backdrop-filter: blur(0px);
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 }
 
-/* Animation for the box and blur */
 .typewriter-box.active {
-    opacity: 1;
-    transform: translateY(0);
-    animation: blurIn 4.5s ease-out forwards;
+  opacity: 1;
+  transform: translateY(0);
+  animation: blurIn 4.5s ease-out forwards;
 }
 
 @keyframes blurIn {
-    0% {
-        backdrop-filter: blur(0px);
-        background: rgba(241, 250, 238, 0.15);
-    }
-    100% {
-        backdrop-filter: blur(10px); /* Slightly more blur */
-        background: rgba(241, 250, 238, 0.4); /* More opaque when fully blurred */
-    }
+  0% {
+    backdrop-filter: blur(0px);
+    background: rgba(241, 250, 238, 0.15);
+  }
+  100% {
+    backdrop-filter: blur(10px);
+    background: rgba(241, 250, 238, 0.4);
+  }
 }
 
 /* ───────────── ABOUT ───────────── */
@@ -317,34 +322,34 @@ nav a:hover {
   justify-content: center;
   gap: 30px;
   align-items: center;
-  background: rgba(241, 250, 238, 0.6); /* Slightly more opaque */
-  backdrop-filter: blur(10px); /* More blur */
-  border-radius: 20px; /* More rounded */
+  background: rgba(241, 250, 238, 0.6);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
   padding: 35px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Stronger shadow */
-  border: 1px solid rgba(241, 250, 238, 0.4); /* Stronger border */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(241, 250, 238, 0.4);
   animation: cardFloat 4s infinite alternate;
 }
 
 @keyframes cardFloat {
   from { transform: translateY(0); }
-  to { transform: translateY(-10px); } /* More floaty */
+  to { transform: translateY(-10px); }
 }
 
 .about-container img {
   width: 250px;
   height: 250px;
   object-fit: cover;
-  border-radius: 15%; /* Slightly more rounded */
+  border-radius: 15%;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  border: 3px solid #FFD700; /* Yellow border */
+  border: 3px solid #FFD700;
   transition: all 0.3s ease;
   flex-shrink: 0;
 }
 
 .about-container img:hover {
-  transform: rotate(5deg) scale(1.05); /* More playful rotate/scale */
-  box-shadow: 0 8px 20px rgba(230, 57, 70, 0.2); /* Red accent shadow */
+  transform: rotate(5deg) scale(1.05);
+  box-shadow: 0 8px 20px rgba(230, 57, 70, 0.2);
 }
 
 .about-content {
@@ -356,36 +361,36 @@ nav a:hover {
   font-size: 16px;
   line-height: 1.7;
   text-align: left;
-  color: #1D3557; /* Dark blue for about text */
+  color: #1D3557;
 }
 
 /* ───────────── SOCIAL BADGES ───────────── */
 .social-badges {
   margin-top: 15px;
   display: flex;
-  gap: 15px; /* More space */
+  gap: 15px;
   justify-content: flex-start;
   flex-wrap: wrap;
 }
 
 .social-badges img {
-  height: 38px; /* Slightly larger */
+  height: 38px;
   transition: all 0.2s ease;
   filter: brightness(0.9);
 }
 
 .social-badges img:hover {
-  transform: scale(1.15) rotate(10deg); /* More pronounced hover */
+  transform: scale(1.15) rotate(10deg);
   filter: brightness(1);
-  box-shadow: 0 0 10px rgba(230, 57, 70, 0.2); /* Red accent shadow */
+  box-shadow: 0 0 10px rgba(230, 57, 70, 0.2);
 }
 
 /* ───────────── PROJECTS ───────────── */
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Larger min width */
-  gap: 30px; /* More space */
-  max-width: 1100px; /* Wider grid */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  max-width: 1100px;
   margin: 40px auto 0;
   perspective: 1000px;
 }
@@ -394,23 +399,23 @@ nav a:hover {
   background: rgba(241, 250, 238, 0.5);
   backdrop-filter: blur(10px);
   padding: 25px;
-  border-radius: 18px; /* More rounded */
+  border-radius: 18px;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   color: #1D3557;
-  border: 1px solid rgba(29, 53, 87, 0.15); /* Slightly darker border */
+  border: 1px solid rgba(29, 53, 87, 0.15);
   transform-style: preserve-3d;
 }
 
 .card:hover {
-  transform: translateY(-10px) rotateX(5deg) scale(1.02); /* More pronounced */
-  box-shadow: 0 8px 20px rgba(230, 57, 70, 0.2); /* Red accent shadow */
+  transform: translateY(-10px) rotateX(5deg) scale(1.02);
+  box-shadow: 0 8px 20px rgba(230, 57, 70, 0.2);
 }
 
 .card i {
   margin-bottom: 10px;
-  color: #E63946; /* Red for icons */
-  font-size: 38px; /* Larger icons */
+  color: #E63946;
+  font-size: 38px;
 }
 
 .card h3 {
@@ -420,32 +425,27 @@ nav a:hover {
 
 .card p {
   font-size: 14px;
-  color: #457B9D; /* Medium blue for card paragraphs */
+  color: #457B9D;
 }
 
-/* ADDED: This block is crucial for removing the default blue link styling */
 .card-link {
-    text-decoration: none; /* Removes the blue underline */
-    color: inherit;      /* Ensures the text color is inherited from the .card */
-    display: block;      /* Makes the entire link act as a block element, filling the card space */
-    height: 100%;        /* Ensures the link covers the entire height of the card */
-    width: 100%;         /* Ensures the link covers the entire width of the card */
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  height: 100%;
+  width: 100%;
 }
 
-/* Optional: If the .card's hover effect isn't applying correctly to the entire link,
-   you can specifically target the .card inside the .card-link on hover */
 .card-link:hover .card {
-    transform: translateY(-10px) rotateX(5deg) scale(1.02); /* Your existing card hover transform */
-    box-shadow: 0 8px 20px rgba(230, 57, 70, 0.2);          /* Your existing card hover shadow */
-    cursor: pointer; /* Ensures the hand cursor appears when hovering over the clickable area */
+  transform: translateY(-10px) rotateX(5deg) scale(1.02);
+  box-shadow: 0 8px 20px rgba(230, 57, 70, 0.2);
+  cursor: pointer;
 }
 
-/* Ensure any interactive elements *inside* the card (if any) are still clickable */
-.card-link button, .card-link a { /* Target buttons or other links directly inside a card-link */
-    pointer-events: auto; /* Re-enable pointer events for these specific elements */
-    cursor: pointer;
+.card-link button, .card-link a {
+  pointer-events: auto;
+  cursor: pointer;
 }
-
 
 /* ───────────── TECHNOLOGIES I USE ───────────── */
 .marquee-container {
@@ -460,7 +460,7 @@ nav a:hover {
 .marquee-track {
   display: flex;
   width: max-content;
-  gap: 25px; /* More space between badges */
+  gap: 25px;
   animation: scroll-left 18s linear infinite;
 }
 
@@ -470,26 +470,25 @@ nav a:hover {
 }
 
 .icon-badge {
-  width: 100px; /* Larger badges */
+  width: 100px;
   height: 100px;
-  border-radius: 15px; /* More rounded */
+  border-radius: 15px;
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   color: #1D3557;
-  font-weight: 600; /* Bolder text */
+  font-weight: 600;
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
-  /* Funky gradient for badges */
-  background: linear-gradient(135deg, #FFD700, #A8DADC); /* Yellow to light blue */
+  background: linear-gradient(135deg, #FFD700, #A8DADC);
   backdrop-filter: blur(8px);
   border: 1px solid rgba(29, 53, 87, 0.15);
 }
 
 .icon-badge i, .icon-badge img {
-  font-size: 40px; /* Larger icons */
+  font-size: 40px;
   margin-bottom: 6px;
   width: 40px;
   height: 40px;
@@ -502,12 +501,12 @@ nav a:hover {
 }
 
 .icon-badge:hover {
-  transform: scale(1.12) rotate(5deg); /* More pronounced hover */
-  box-shadow: 0 0 12px rgba(230, 57, 70, 0.2); /* Red accent shadow */
-  background: linear-gradient(135deg, #f1efef, #FFD700); /* Red to Yellow on hover */
+  transform: scale(1.12) rotate(5deg);
+  box-shadow: 0 0 12px rgba(230, 57, 70, 0.2);
+  background: linear-gradient(135deg, #f1efef, #FFD700);
 }
 
-/* Colored badge classes - adjust for new theme */
+/* Colored badge classes */
 .icon-badge.c           { background: linear-gradient(135deg, #FFD700, #A8DADC); }
 .icon-badge.css         { background: linear-gradient(135deg, #A8DADC, #FFD700); }
 .icon-badge.figma       { background: linear-gradient(135deg, #FFD700, #A8DADC); }
@@ -531,9 +530,9 @@ nav a:hover {
 /* ───────────── SKILLS BELOW TECH BADGES ───────────── */
 .skills-below {
   max-width: 1000px;
-  margin: 25px auto; /* More space */
+  margin: 25px auto;
   padding: 55px 20px;
-  background: rgba(241, 250, 238, 0.7); /* More opaque */
+  background: rgba(241, 250, 238, 0.7);
   backdrop-filter: blur(10px);
   border-radius: 20px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
@@ -541,10 +540,8 @@ nav a:hover {
   animation: cardFloat 4s infinite alternate;
 }
 
-/* cardFloat is defined above for .about-container */
-
 .skills-below h2 {
-  font-size: 30px; /* Larger heading */
+  font-size: 30px;
   margin-bottom: 30px;
 }
 
@@ -575,8 +572,8 @@ nav a:hover {
 
 .skills-grid div:hover {
   background: rgba(241, 250, 238, 0.6);
-  transform: translateY(-6px) rotate(2deg); /* More pronounced */
-  box-shadow: 0 6px 15px rgba(230, 57, 70, 0.2); /* Red accent shadow */
+  transform: translateY(-6px) rotate(2deg);
+  box-shadow: 0 6px 15px rgba(230, 57, 70, 0.2);
 }
 
 .skills-category {
@@ -589,7 +586,7 @@ nav a:hover {
 #contact {
   background: rgba(241, 250, 238, 0.7);
   backdrop-filter: blur(10px);
-  padding: 70px 30px; /* More padding */
+  padding: 70px 30px;
   border-radius: 20px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   margin: 60px auto;
@@ -609,14 +606,14 @@ nav a:hover {
   margin: 30px auto 0;
   display: flex;
   flex-direction: column;
-  gap: 16px; /* More space */
+  gap: 16px;
 }
 
 #contact input, #contact textarea {
-  padding: 14px; /* Larger padding */
+  padding: 14px;
   font-size: 15px;
   border: 1px solid rgba(29, 53, 87, 0.1);
-  border-radius: 12px; /* More rounded */
+  border-radius: 12px;
   background: rgba(241, 250, 238, 0.3);
   backdrop-filter: blur(8px);
   color: #1D3557;
@@ -624,20 +621,20 @@ nav a:hover {
 }
 
 #contact input:focus, #contact textarea:focus {
-  border-color: rgba(230, 57, 70, 0.4); /* Red accent border on focus */
-  box-shadow: 0 0 10px rgba(230, 57, 70, 0.2); /* Red accent shadow on focus */
+  border-color: rgba(230, 57, 70, 0.4);
+  box-shadow: 0 0 10px rgba(230, 57, 70, 0.2);
   outline: none;
 }
 
 #contact textarea {
   resize: vertical;
-  min-height: 120px; /* Taller */
+  min-height: 120px;
 }
 
 #contact button {
   background: linear-gradient(135deg, #E63946, #FFD700);
   color: #1D3557;
-  padding: 14px 30px; /* Larger padding */
+  padding: 14px 30px;
   font-size: 16px;
   font-weight: 700;
   border: none;
@@ -667,7 +664,7 @@ nav a:hover {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: rgba(0, 0, 0, 0.1); /* Darker ripple */
+  background: rgba(0, 0, 0, 0.1);
   border-radius: 100%;
   opacity: 0;
   transition: width 0.4s ease, height 0.4s ease, opacity 0.3s ease;
@@ -682,15 +679,15 @@ nav a:hover {
 
 /* ───────────── FLASH MESSAGE ───────────── */
 .flash {
-  margin-bottom: 25px; /* More space */
-  padding: 15px; /* Larger padding */
-  border-radius: 10px; /* More rounded */
+  margin-bottom: 25px;
+  padding: 15px;
+  border-radius: 10px;
   font-weight: 700;
   text-align: center;
   animation: fadeIn 0.5s ease-out;
   background: rgba(241, 250, 238, 0.4);
   backdrop-filter: blur(8px);
-  border-left: 5px solid rgba(29, 53, 87, 0.3); /* Thicker border */
+  border-left: 5px solid rgba(29, 53, 87, 0.3);
   color: #1D3557;
   border: 1px solid rgba(29, 53, 87, 0.2);
 }
@@ -702,24 +699,23 @@ nav a:hover {
 }
 
 .flash-error {
-  background-color: rgba(230, 57, 70, 0.15); /* Lighter red background */
-  color: #E63946; /* Red text */
-  border: 1px solid rgba(230, 57, 70, 0.4); /* Stronger red border */
-  border-left: 5px solid #E63946; /* Solid red left border */
+  background-color: rgba(230, 57, 70, 0.15);
+  color: #E63946;
+  border: 1px solid rgba(230, 57, 70, 0.4);
+  border-left: 5px solid #E63946;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-15px); } /* More movement */
+  from { opacity: 0; transform: translateY(-15px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 /* ───────────── FOOTER ───────────── */
 footer {
-  /* Funky footer gradient */
-  background: linear-gradient(135deg, #1D3557, #E63946); /* Dark blue to Red */
+  background: linear-gradient(135deg, #1D3557, #E63946);
   backdrop-filter: blur(8px);
   color: #F1FAEE;
-  padding: 35px; /* More padding */
+  padding: 35px;
   text-align: center;
   font-size: 14px;
   border-top: 1px solid rgba(29, 53, 87, 0.2);
@@ -728,7 +724,7 @@ footer {
 .footer-socials {
   display: flex;
   justify-content: center;
-  gap: 20px; /* More space */
+  gap: 20px;
   margin-top: 20px;
   flex-wrap: wrap;
 }
@@ -737,8 +733,8 @@ footer {
   text-decoration: none;
   font-weight: 600;
   color: #000000;
-  padding: 10px 18px; /* Larger padding */
-  border-radius: 8px; /* More rounded */
+  padding: 10px 18px;
+  border-radius: 8px;
   transition: all 0.3s ease;
   background: rgba(241, 250, 238, 0.3);
   backdrop-filter: blur(8px);
@@ -748,10 +744,10 @@ footer {
 .footer-socials a:hover {
   transform: scale(1.1);
   background: rgba(241, 250, 238, 0.5);
-  box-shadow: 0 0 10px rgba(230, 57, 70, 0.2); /* Red accent shadow */
+  box-shadow: 0 0 10px rgba(230, 57, 70, 0.2);
 }
 
-/* Specific hover colors for social links - More vibrant */
+/* Specific hover colors for social links */
 .footer-socials a[href*="linkedin"]:hover { background: #0A66C2; color: #F1FAEE; }
 .footer-socials a[href*="facebook"]:hover { background: #0866FF; color: #F1FAEE; }
 .footer-socials a[href*="instagram"]:hover { background: linear-gradient(45deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5); color: #F1FAEE; }
@@ -763,7 +759,7 @@ footer {
   inset: 0;
   pointer-events: none;
   background-image: url('https://grainy-gradients.vercel.app/noise.svg');
-  opacity: 0.05; /* Slightly more visible grain */
+  opacity: 0.05;
   z-index: -1;
   animation: grainShift 6s infinite linear;
 }
@@ -776,9 +772,9 @@ footer {
 .svg-divider svg {
   display: block;
   width: 100%;
-  height: 80px; /* Taller divider */
-  margin-top: -40px; /* Adjust margin */
-  fill: rgba(230, 57, 70, 0.2); /* Red accent fill */
+  height: 80px;
+  margin-top: -40px;
+  fill: rgba(230, 57, 70, 0.2);
   animation: wave 3s infinite alternate;
 }
 
@@ -803,7 +799,7 @@ footer {
   position: absolute;
   width: 18px;
   height: 18px;
-  background: rgba(230, 57, 70, 0.15); /* Red accent */
+  background: rgba(230, 57, 70, 0.15);
   opacity: 0.5;
   border-radius: 50%;
   transform: scale(0);
@@ -817,85 +813,11 @@ footer {
 }
 
 .arrow-img {
-  width: 55px; /* Larger arrow */
-  animation: floatArrow 1.5s ease-in-out infinite; /* Faster float */
+  width: 55px;
+  animation: floatArrow 1.5s ease-in-out infinite;
 }
 
 @keyframes floatArrow {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(4px); }
-}
-/* --- Navigation Adjustments --- */
-/* Ensure the parent <nav> is a flex container */
-nav {
-  display: flex; /* Make sure this is set */
-  justify-content: space-between; /* Pushes the logo to the left, and nav links to the right */
-  align-items: center; /* Vertically aligns items in the nav bar */
-  /* Keep existing styles like position: fixed, width, padding, background, etc. */
-  padding: 12px 25px; /* Adjust padding as needed for space around logo and links */
-}
-
-/* Styles for the left section containing the logo */
-.nav-left {
-  display: flex; /* To align logo image and optional site name text */
-  align-items: center; /* Vertically align logo and text */
-}
-
-/* Styles for the link wrapping the logo */
-.logo-link {
-  text-decoration: none; /* Remove underline from the logo link */
-  display: flex; /* Helps align the image and potential text next to it */
-  align-items: center; /* Vertically align contents within the link */
-}
-
-/* Styles for the logo image itself */
-.nav-logo {
-  height: 40px; /* Adjust this height as needed for your logo's size */
-  width: auto; /* Maintain aspect ratio */
-  vertical-align: middle; /* Helps with alignment */
-  /* If you add a site name next to it, you might add: margin-right: 8px; */
-  transition: transform 0.3s ease; /* Smooth hover effect */
-}
-
-.nav-logo:hover {
-  transform: scale(1.05); /* Slight zoom on hover */
-}
-
-/* Optional: Styles for the site name text if you add it next to the logo */
-.site-name {
-  font-family: 'Bebas Neue', sans-serif; /* Or your preferred heading font */
-  font-size: 24px; /* Adjust font size */
-  color: #1D3557; /* Your primary dark blue color */
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  white-space: nowrap; /* Prevents text from wrapping */
-}
-
-/* --- Existing nav ul styles (ensure these are present and adjusted if needed) --- */
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 18px; /* Space between nav links */
-  /* margin-left: auto; */ /* This line from my previous snippet can be useful to push ul to right,
-                              but 'justify-content: space-between' on 'nav' already handles that. */
-}
-
-/* --- Responsive Adjustments (Highly Recommended) --- */
-@media (max-width: 768px) {
-  nav {
-    flex-direction: column; /* Stack logo and nav links vertically on smaller screens */
-    padding: 15px 20px;
-    /* Adjust width if needed for mobile, e.g., width: 100%; */
-  }
-
-  .nav-left {
-    margin-bottom: 15px; /* Add space below the logo when stacked */
-  }
-
-  nav ul {
-    width: 100%; /* Make list take full width */
-    justify-content: center; /* Center nav links when stacked */
-    margin-left: 0; /* Remove auto margin that pushed it right */
-    flex-wrap: wrap; /* Allow nav items to wrap if screen is very narrow */
-  }
 }
