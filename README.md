@@ -1,6 +1,4 @@
-Here's a template for a good `README.md` file for your React portfolio, tailored with the information you've provided. Remember to fill in the bracketed placeholders `[ ]` with your specific details.
 
-````markdown
 ## Snehashis's Personal Portfolio
 
 ![home_logo](https://github.com/user-attachments/assets/740a61a0-803d-4d96-934f-47c6a3426c54)
