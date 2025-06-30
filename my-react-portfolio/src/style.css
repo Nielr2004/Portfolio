@@ -1,0 +1,827 @@
+/* Ensure these are at the very top of your file */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap'); /* For headings */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap'); /* For body text */
+
+/* ───────────── RESET ───────────── */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Nunito', sans-serif; /* Friendly body font */
+  background: #F1FAEE; /* Solid light cream background */
+  color: #1D3557; /* Dark blue for main body text */
+  font-size: 16px;
+  line-height: 1.6;
+  letter-spacing: 0.3px;
+  overflow-x: hidden;
+}
+
+/* ───────────── TYPOGRAPHY ───────────── */
+h1, h2, h3 {
+  font-family: 'Bebas Neue', sans-serif; /* Bold, funky heading font */
+  font-weight: normal; /* Bebas Neue usually doesn't need specific weights */
+  margin-bottom: 12px;
+  color: #1D3557; /* Dark blue for headings */
+  text-transform: uppercase; /* Makes Bebas Neue even punchier */
+  letter-spacing: 2px;
+}
+
+section {
+  padding: 60px 20px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* ───────────── NAVIGATION ───────────── */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  background: rgba(241, 250, 238, 0.9); /* Cream with slight transparency */
+  backdrop-filter: blur(8px);
+  padding: 12px 25px;
+  display: flex;
+  justify-content: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  border-radius: 0;
+  margin: 0;
+  border: none;
+}
+
+nav ul {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  list-style: none;
+}
+
+nav a {
+  text-decoration: none;
+  font-weight: 600; /* Nunito semibold */
+  color: #1D3557; /* Dark blue for nav links */
+  padding: 8px 16px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  font-size: 15px; /* Slightly smaller for more emphasis on headings */
+}
+
+nav a::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(230, 57, 70, 0.2); /* Red accent overlay */
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.5s ease, height 0.5s ease;
+}
+
+nav a:hover::before {
+  width: 150%;
+  height: 150%;
+}
+
+nav a:hover {
+  background: #FFD700; /* Yellow hover */
+  color: #1D3557; /* Dark blue on hover */
+  transform: translateY(-2px);
+  box-shadow: 0 0 8px rgba(230, 57, 70, 0.2); /* Red accent shadow */
+}
+
+/* ───────────── HOME ───────────── */
+#home {
+  padding-top: 80px;
+  min-height: 100vh;
+  display: flex; /* Use flexbox for overall home section */
+  flex-direction: column; /* Stack main content (image+text) and button vertically */
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  text-align: center; /* Default text alignment */
+  background: #F1FAEE; /* Solid light cream background */
+}
+
+/* IMPORTANT: If you previously had an <img> tag with class "quote-image-background"
+   that was positioned as a background, these styles are now largely obsolete
+   since you are using a content image in the .home-left div.
+   You might want to remove or hide such an element from your HTML. */
+#home .quote-image-background {
+    display: none; /* Hide the old background image if it's no longer used */
+}
+
+/* Styles for the new content image in the home section (e.g., niel 5.png) */
+.home-quote-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 15%; /* Consistent with about image */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border: 3px solid #FFD700; /* Yellow border */
+    transition: all 0.3s ease;
+    margin: 20px auto; /* Centered and some vertical space */
+    display: block; /* Ensures margin auto works for centering in its flex container */
+}
+
+.home-quote-image:hover {
+    transform: rotate(-5deg) scale(1.05); /* Playful hover for the image */
+    box-shadow: 0 8px 20px rgba(230, 57, 70, 0.2); /* Red accent shadow */
+}
+
+/* Remove the background overlay pseudo-element, as layout has changed */
+#home::before {
+  content: none;
+}
+#home.blur::before {
+  content: none;
+}
+
+/* New main content wrapper for side-by-side layout (image on left, text on right) */
+.home-main-content {
+    display: flex;
+    justify-content: space-around; /* Distribute space between items */
+    align-items: center; /* Vertically align items in the row */
+    width: 100%;
+    max-width: 1200px; /* Maximum width for the content row */
+    flex-wrap: wrap; /* Allow wrapping columns on smaller screens */
+    margin-bottom: 50px; /* Space above the button */
+    gap: 40px; /* Gap between image column and text column */
+    padding: 0 20px; /* Horizontal padding for responsiveness */
+}
+
+/* Styles for the left and right columns within home-main-content */
+.home-left, .home-right {
+    flex: 1; /* Allow them to grow and shrink */
+    min-width: 300px; /* Minimum width before wrapping to next line */
+    text-align: center; /* Center content within these columns */
+}
+
+.home-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center its children (typewriter, p) */
+    justify-content: center;
+}
+
+#home p {
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: #1D3557; /* Dark blue for paragraph text */
+}
+
+.button {
+  /* Vibrant button gradient */
+  background: linear-gradient(135deg, #E63946, #FFD700); /* Red to Yellow */
+  backdrop-filter: blur(8px);
+  color: #1D3557; /* Dark blue text on vibrant button */
+  padding: 12px 28px; /* Larger padding */
+  border-radius: 30px; /* More rounded */
+  text-decoration: none;
+  font-weight: 700; /* Bolder text */
+  transition: all 0.3s ease;
+  border: none; /* No border for a cleaner look */
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  margin-top: 25px; /* More space from content above */
+  z-index: 2;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15); /* Stronger initial shadow */
+}
+
+.button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(0, 0, 0, 0.1); /* Darker ripple for contrast */
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.5s ease, height 0.5s ease;
+}
+
+.button:hover::before {
+  width: 150%;
+  height: 150%;
+}
+
+.button:hover {
+  /* Reverse gradient for hover */
+  background: linear-gradient(135deg, #FFD700, #E63946); /* Yellow to Red */
+  color: #1D3557;
+  transform: scale(1.05) translateY(-3px); /* More pronounced hover */
+  box-shadow: 0 8px 20px rgba(230, 57, 70, 0.2); /* Red accent shadow */
+}
+
+/* Typewriter styles */
+.typewriter {
+  font-family: 'Bebas Neue', sans-serif; /* Funky heading font */
+  font-weight: normal;
+  font-size: 3.5rem; /* Larger font size */
+  line-height: 1; /* Tighter line height for Bebas Neue */
+  letter-spacing: 3px; /* More spacing for Bebas Neue */
+  text-transform: uppercase;
+
+  /* Vibrant gradient for text */
+  background: linear-gradient(90deg, #E63946, #FFD700, #1D3557); /* Red, Yellow, Dark Blue */
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+
+  margin: 0;
+  min-width: 0;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* The Blinking Cursor */
+.typewriter-cursor {
+  display: inline-block;
+  width: 3px; /* Thicker cursor */
+  background-color: #E63946; /* Red cursor */
+  height: 1.1em; /* Adjust to font size */
+  vertical-align: middle;
+  margin-left: 4px; /* More space */
+  animation: blink 0.7s step-end infinite; /* Faster blink */
+  transition: opacity 0.3s ease;
+}
+
+@keyframes blink {
+  50% { background-color: transparent; }
+}
+
+/* Typewriter box styles */
+.typewriter-box {
+  background: rgba(241, 250, 238, 0.15); /* Cream with more transparency */
+  padding: 25px 35px; /* Slightly larger padding */
+  border-radius: 20px; /* More rounded corners for fun */
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15); /* Stronger shadow */
+  border: 1px solid rgba(241, 250, 238, 0.3);
+  display: inline-block; /* Allows box to wrap content and center with flex */
+  margin: 0 auto 20px; /* Centers the box, adds space below */
+  max-width: fit-content; /* Make box fit content width */
+  text-align: center; /* Ensure text inside is centered */
+  overflow: hidden; /* Important for backdrop-filter on children in some browsers */
+
+  backdrop-filter: blur(0px);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+/* Animation for the box and blur */
+.typewriter-box.active {
+    opacity: 1;
+    transform: translateY(0);
+    animation: blurIn 4.5s ease-out forwards;
+}
+
+@keyframes blurIn {
+    0% {
+        backdrop-filter: blur(0px);
+        background: rgba(241, 250, 238, 0.15);
+    }
+    100% {
+        backdrop-filter: blur(10px); /* Slightly more blur */
+        background: rgba(241, 250, 238, 0.4); /* More opaque when fully blurred */
+    }
+}
+
+/* ───────────── ABOUT ───────────── */
+.about-container {
+  max-width: 1000px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  align-items: center;
+  background: rgba(241, 250, 238, 0.6); /* Slightly more opaque */
+  backdrop-filter: blur(10px); /* More blur */
+  border-radius: 20px; /* More rounded */
+  padding: 35px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Stronger shadow */
+  border: 1px solid rgba(241, 250, 238, 0.4); /* Stronger border */
+  animation: cardFloat 4s infinite alternate;
+}
+
+@keyframes cardFloat {
+  from { transform: translateY(0); }
+  to { transform: translateY(-10px); } /* More floaty */
+}
+
+.about-container img {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 15%; /* Slightly more rounded */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  border: 3px solid #FFD700; /* Yellow border */
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.about-container img:hover {
+  transform: rotate(5deg) scale(1.05); /* More playful rotate/scale */
+  box-shadow: 0 8px 20px rgba(230, 57, 70, 0.2); /* Red accent shadow */
+}
+
+.about-content {
+  flex: 1;
+  min-width: 300px;
+}
+
+.about-content p {
+  font-size: 16px;
+  line-height: 1.7;
+  text-align: left;
+  color: #1D3557; /* Dark blue for about text */
+}
+
+/* ───────────── SOCIAL BADGES ───────────── */
+.social-badges {
+  margin-top: 15px;
+  display: flex;
+  gap: 15px; /* More space */
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.social-badges img {
+  height: 38px; /* Slightly larger */
+  transition: all 0.2s ease;
+  filter: brightness(0.9);
+}
+
+.social-badges img:hover {
+  transform: scale(1.15) rotate(10deg); /* More pronounced hover */
+  filter: brightness(1);
+  box-shadow: 0 0 10px rgba(230, 57, 70, 0.2); /* Red accent shadow */
+}
+
+/* ───────────── PROJECTS ───────────── */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Larger min width */
+  gap: 30px; /* More space */
+  max-width: 1100px; /* Wider grid */
+  margin: 40px auto 0;
+  perspective: 1000px;
+}
+
+.card {
+  background: rgba(241, 250, 238, 0.5);
+  backdrop-filter: blur(10px);
+  padding: 25px;
+  border-radius: 18px; /* More rounded */
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  color: #1D3557;
+  border: 1px solid rgba(29, 53, 87, 0.15); /* Slightly darker border */
+  transform-style: preserve-3d;
+}
+
+.card:hover {
+  transform: translateY(-10px) rotateX(5deg) scale(1.02); /* More pronounced */
+  box-shadow: 0 8px 20px rgba(230, 57, 70, 0.2); /* Red accent shadow */
+}
+
+.card i {
+  margin-bottom: 10px;
+  color: #E63946; /* Red for icons */
+  font-size: 38px; /* Larger icons */
+}
+
+.card h3 {
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.card p {
+  font-size: 14px;
+  color: #457B9D; /* Medium blue for card paragraphs */
+}
+
+/* ADDED: This block is crucial for removing the default blue link styling */
+.card-link {
+    text-decoration: none; /* Removes the blue underline */
+    color: inherit;      /* Ensures the text color is inherited from the .card */
+    display: block;      /* Makes the entire link act as a block element, filling the card space */
+    height: 100%;        /* Ensures the link covers the entire height of the card */
+    width: 100%;         /* Ensures the link covers the entire width of the card */
+}
+
+/* Optional: If the .card's hover effect isn't applying correctly to the entire link,
+   you can specifically target the .card inside the .card-link on hover */
+.card-link:hover .card {
+    transform: translateY(-10px) rotateX(5deg) scale(1.02); /* Your existing card hover transform */
+    box-shadow: 0 8px 20px rgba(230, 57, 70, 0.2);          /* Your existing card hover shadow */
+    cursor: pointer; /* Ensures the hand cursor appears when hovering over the clickable area */
+}
+
+/* Ensure any interactive elements *inside* the card (if any) are still clickable */
+.card-link button, .card-link a { /* Target buttons or other links directly inside a card-link */
+    pointer-events: auto; /* Re-enable pointer events for these specific elements */
+    cursor: pointer;
+}
+
+
+/* ───────────── TECHNOLOGIES I USE ───────────── */
+.marquee-container {
+  overflow: hidden;
+  width: 100%;
+  background: rgba(241, 250, 238, 0.4);
+  backdrop-filter: blur(10px);
+  padding: 30px 0;
+  border: 1px solid rgba(29, 53, 87, 0.15);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  gap: 25px; /* More space between badges */
+  animation: scroll-left 18s linear infinite;
+}
+
+@keyframes scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.icon-badge {
+  width: 100px; /* Larger badges */
+  height: 100px;
+  border-radius: 15px; /* More rounded */
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #1D3557;
+  font-weight: 600; /* Bolder text */
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  /* Funky gradient for badges */
+  background: linear-gradient(135deg, #FFD700, #A8DADC); /* Yellow to light blue */
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(29, 53, 87, 0.15);
+}
+
+.icon-badge i, .icon-badge img {
+  font-size: 40px; /* Larger icons */
+  margin-bottom: 6px;
+  width: 40px;
+  height: 40px;
+}
+
+.icon-badge span {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.icon-badge:hover {
+  transform: scale(1.12) rotate(5deg); /* More pronounced hover */
+  box-shadow: 0 0 12px rgba(230, 57, 70, 0.2); /* Red accent shadow */
+  background: linear-gradient(135deg, #f1efef, #FFD700); /* Red to Yellow on hover */
+}
+
+/* Colored badge classes - adjust for new theme */
+.icon-badge.c           { background: linear-gradient(135deg, #FFD700, #A8DADC); }
+.icon-badge.css         { background: linear-gradient(135deg, #A8DADC, #FFD700); }
+.icon-badge.figma       { background: linear-gradient(135deg, #FFD700, #A8DADC); }
+.icon-badge.html        { background: linear-gradient(135deg, #A8DADC, #FFD700); }
+.icon-badge.illustrator { background: linear-gradient(135deg, #FFD700, #A8DADC); }
+.icon-badge.java        { background: linear-gradient(135deg, #A8DADC, #FFD700); }
+.icon-badge.js          { background: linear-gradient(135deg, #FFD700, #A8DADC); color: #1D3557; }
+.icon-badge.mysql       { background: linear-gradient(135deg, #A8DADC, #FFD700); }
+.icon-badge.python      { background: linear-gradient(135deg, #FFD700, #A8DADC); }
+.icon-badge.ai          { background: linear-gradient(135deg, #A8DADC, #FFD700); }
+.icon-badge.data        { background: linear-gradient(135deg, #FFD700, #A8DADC); }
+.icon-badge.powerbi     { background: linear-gradient(135deg, #A8DADC, #FFD700); }
+.icon-badge.react       { background: linear-gradient(135deg, #FFD700, #A8DADC); }
+.icon-badge.flask       { background: linear-gradient(135deg, #A8DADC, #FFD700); }
+.icon-badge.git         { background: linear-gradient(135deg, #FFD700, #A8DADC); }
+.icon-badge.github      { background: linear-gradient(135deg, #A8DADC, #FFD700); }
+.icon-badge.nodejs      { background: linear-gradient(135deg, #FFD700, #A8DADC); }
+.icon-badge.php         { background: linear-gradient(135deg, #A8DADC, #FFD700); }
+.icon-badge.mongodb     { background: linear-gradient(135deg, #FFD700, #A8DADC); }
+
+/* ───────────── SKILLS BELOW TECH BADGES ───────────── */
+.skills-below {
+  max-width: 1000px;
+  margin: 25px auto; /* More space */
+  padding: 55px 20px;
+  background: rgba(241, 250, 238, 0.7); /* More opaque */
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(29, 53, 87, 0.15);
+  animation: cardFloat 4s infinite alternate;
+}
+
+/* cardFloat is defined above for .about-container */
+
+.skills-below h2 {
+  font-size: 30px; /* Larger heading */
+  margin-bottom: 30px;
+}
+
+.skills-below h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  text-align: center;
+}
+
+.skills-grid div {
+  background: rgba(241, 250, 238, 0.4);
+  backdrop-filter: blur(8px);
+  padding: 18px 15px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #1D3557;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(29, 53, 87, 0.1);
+}
+
+.skills-grid div:hover {
+  background: rgba(241, 250, 238, 0.6);
+  transform: translateY(-6px) rotate(2deg); /* More pronounced */
+  box-shadow: 0 6px 15px rgba(230, 57, 70, 0.2); /* Red accent shadow */
+}
+
+.skills-category {
+  margin-bottom: 40px;
+  text-align: left;
+  padding-left: 10px;
+}
+
+/* ───────────── CONTACT ───────────── */
+#contact {
+  background: rgba(241, 250, 238, 0.7);
+  backdrop-filter: blur(10px);
+  padding: 70px 30px; /* More padding */
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  margin: 60px auto;
+  max-width: 900px;
+  color: #1D3557;
+  border: 1px solid rgba(29, 53, 87, 0.15);
+  animation: cardFloat 4s infinite alternate;
+}
+
+#contact h2 {
+  font-size: 30px;
+  margin-bottom: 30px;
+}
+
+#contact form {
+  max-width: 600px;
+  margin: 30px auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* More space */
+}
+
+#contact input, #contact textarea {
+  padding: 14px; /* Larger padding */
+  font-size: 15px;
+  border: 1px solid rgba(29, 53, 87, 0.1);
+  border-radius: 12px; /* More rounded */
+  background: rgba(241, 250, 238, 0.3);
+  backdrop-filter: blur(8px);
+  color: #1D3557;
+  transition: all 0.3s ease;
+}
+
+#contact input:focus, #contact textarea:focus {
+  border-color: rgba(230, 57, 70, 0.4); /* Red accent border on focus */
+  box-shadow: 0 0 10px rgba(230, 57, 70, 0.2); /* Red accent shadow on focus */
+  outline: none;
+}
+
+#contact textarea {
+  resize: vertical;
+  min-height: 120px; /* Taller */
+}
+
+#contact button {
+  background: linear-gradient(135deg, #E63946, #FFD700);
+  color: #1D3557;
+  padding: 14px 30px; /* Larger padding */
+  font-size: 16px;
+  font-weight: 700;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+#contact button:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 8px 20px rgba(230, 57, 70, 0.2);
+}
+
+#contact button:active {
+  transform: scale(0.96);
+}
+
+/* Optional ripple effect */
+#contact button::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.1); /* Darker ripple */
+  border-radius: 100%;
+  opacity: 0;
+  transition: width 0.4s ease, height 0.4s ease, opacity 0.3s ease;
+}
+
+#contact button:active::after {
+  width: 180%;
+  height: 400%;
+  opacity: 0;
+  transition: 0s;
+}
+
+/* ───────────── FLASH MESSAGE ───────────── */
+.flash {
+  margin-bottom: 25px; /* More space */
+  padding: 15px; /* Larger padding */
+  border-radius: 10px; /* More rounded */
+  font-weight: 700;
+  text-align: center;
+  animation: fadeIn 0.5s ease-out;
+  background: rgba(241, 250, 238, 0.4);
+  backdrop-filter: blur(8px);
+  border-left: 5px solid rgba(29, 53, 87, 0.3); /* Thicker border */
+  color: #1D3557;
+  border: 1px solid rgba(29, 53, 87, 0.2);
+}
+
+.flash-success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.flash-error {
+  background-color: rgba(230, 57, 70, 0.15); /* Lighter red background */
+  color: #E63946; /* Red text */
+  border: 1px solid rgba(230, 57, 70, 0.4); /* Stronger red border */
+  border-left: 5px solid #E63946; /* Solid red left border */
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-15px); } /* More movement */
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ───────────── FOOTER ───────────── */
+footer {
+  /* Funky footer gradient */
+  background: linear-gradient(135deg, #1D3557, #E63946); /* Dark blue to Red */
+  backdrop-filter: blur(8px);
+  color: #F1FAEE;
+  padding: 35px; /* More padding */
+  text-align: center;
+  font-size: 14px;
+  border-top: 1px solid rgba(29, 53, 87, 0.2);
+}
+
+.footer-socials {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* More space */
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.footer-socials a {
+  text-decoration: none;
+  font-weight: 600;
+  color: #000000;
+  padding: 10px 18px; /* Larger padding */
+  border-radius: 8px; /* More rounded */
+  transition: all 0.3s ease;
+  background: rgba(241, 250, 238, 0.3);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(29, 53, 87, 0.15);
+}
+
+.footer-socials a:hover {
+  transform: scale(1.1);
+  background: rgba(241, 250, 238, 0.5);
+  box-shadow: 0 0 10px rgba(230, 57, 70, 0.2); /* Red accent shadow */
+}
+
+/* Specific hover colors for social links - More vibrant */
+.footer-socials a[href*="linkedin"]:hover { background: #0A66C2; color: #F1FAEE; }
+.footer-socials a[href*="facebook"]:hover { background: #0866FF; color: #F1FAEE; }
+.footer-socials a[href*="instagram"]:hover { background: linear-gradient(45deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5); color: #F1FAEE; }
+.footer-socials a[href*="github"]:hover { background: #14191F; color: #F1FAEE; }
+
+/* Extras: Grain, ripple, divider, etc. */
+.grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: url('https://grainy-gradients.vercel.app/noise.svg');
+  opacity: 0.05; /* Slightly more visible grain */
+  z-index: -1;
+  animation: grainShift 6s infinite linear;
+}
+
+@keyframes grainShift {
+  0% { background-position: 0 0; }
+  100% { background-position: 40px 40px; }
+}
+
+.svg-divider svg {
+  display: block;
+  width: 100%;
+  height: 80px; /* Taller divider */
+  margin-top: -40px; /* Adjust margin */
+  fill: rgba(230, 57, 70, 0.2); /* Red accent fill */
+  animation: wave 3s infinite alternate;
+}
+
+@keyframes wave {
+  from { transform: translateY(0); }
+  to { transform: translateY(-6px); }
+}
+
+.tilt {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+.tilt:hover {
+  transform: rotateX(3deg) rotateY(3deg) scale(1.01);
+}
+
+.ripple {
+  position: relative;
+  overflow: hidden;
+}
+.ripple-effect {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background: rgba(230, 57, 70, 0.15); /* Red accent */
+  opacity: 0.5;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple-animation 0.6s linear;
+}
+@keyframes ripple-animation {
+  to {
+    transform: scale(12);
+    opacity: 0;
+  }
+}
+
+.arrow-img {
+  width: 55px; /* Larger arrow */
+  animation: floatArrow 1.5s ease-in-out infinite; /* Faster float */
+}
+
+@keyframes floatArrow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(4px); }
+}
