@@ -825,3 +825,77 @@ footer {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(4px); }
 }
+/* --- Navigation Adjustments --- */
+/* Ensure the parent <nav> is a flex container */
+nav {
+  display: flex; /* Make sure this is set */
+  justify-content: space-between; /* Pushes the logo to the left, and nav links to the right */
+  align-items: center; /* Vertically aligns items in the nav bar */
+  /* Keep existing styles like position: fixed, width, padding, background, etc. */
+  padding: 12px 25px; /* Adjust padding as needed for space around logo and links */
+}
+
+/* Styles for the left section containing the logo */
+.nav-left {
+  display: flex; /* To align logo image and optional site name text */
+  align-items: center; /* Vertically align logo and text */
+}
+
+/* Styles for the link wrapping the logo */
+.logo-link {
+  text-decoration: none; /* Remove underline from the logo link */
+  display: flex; /* Helps align the image and potential text next to it */
+  align-items: center; /* Vertically align contents within the link */
+}
+
+/* Styles for the logo image itself */
+.nav-logo {
+  height: 40px; /* Adjust this height as needed for your logo's size */
+  width: auto; /* Maintain aspect ratio */
+  vertical-align: middle; /* Helps with alignment */
+  /* If you add a site name next to it, you might add: margin-right: 8px; */
+  transition: transform 0.3s ease; /* Smooth hover effect */
+}
+
+.nav-logo:hover {
+  transform: scale(1.05); /* Slight zoom on hover */
+}
+
+/* Optional: Styles for the site name text if you add it next to the logo */
+.site-name {
+  font-family: 'Bebas Neue', sans-serif; /* Or your preferred heading font */
+  font-size: 24px; /* Adjust font size */
+  color: #1D3557; /* Your primary dark blue color */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  white-space: nowrap; /* Prevents text from wrapping */
+}
+
+/* --- Existing nav ul styles (ensure these are present and adjusted if needed) --- */
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 18px; /* Space between nav links */
+  /* margin-left: auto; */ /* This line from my previous snippet can be useful to push ul to right,
+                              but 'justify-content: space-between' on 'nav' already handles that. */
+}
+
+/* --- Responsive Adjustments (Highly Recommended) --- */
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column; /* Stack logo and nav links vertically on smaller screens */
+    padding: 15px 20px;
+    /* Adjust width if needed for mobile, e.g., width: 100%; */
+  }
+
+  .nav-left {
+    margin-bottom: 15px; /* Add space below the logo when stacked */
+  }
+
+  nav ul {
+    width: 100%; /* Make list take full width */
+    justify-content: center; /* Center nav links when stacked */
+    margin-left: 0; /* Remove auto margin that pushed it right */
+    flex-wrap: wrap; /* Allow nav items to wrap if screen is very narrow */
+  }
+}
