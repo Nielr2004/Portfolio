@@ -5,11 +5,13 @@ const Projects = () => {
     <section id="projects" data-aos="zoom-in">
       <h2>Projects</h2>
       <div className="project-grid">
+        <a href="https://github.com/notorious0631/Fast-Track.git" target="_blank" rel="noopener noreferrer" className="card-link">
         <div className="card">
           <i className="fas fa-user-lock fa-2x"></i>
           <h3>Face Track+</h3>
           <p>Smart attendance using OpenCV, Tkinter and Arduino</p>
         </div>
+        </a>
         <div className="card">
           <i className="fas fa-laptop-code fa-2x"></i>
           <h3>This Portfolio</h3>
