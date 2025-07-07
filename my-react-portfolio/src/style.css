@@ -53,8 +53,8 @@ nav {
   backdrop-filter: blur(8px);
   padding-top: 12px;
   padding-bottom: 12px;
-  padding-left: 230px; /* Kept as per user's request */
-  padding-right: 250px; /* Kept as per user's request */
+  padding-left: 20px; /* Kept as per user's request */
+  padding-right: 20px; /* Kept as per user's request */
   display: flex;
   justify-content: space-between; /* Pushes logo left, links right */
   align-items: center; /* Vertically aligns items */
