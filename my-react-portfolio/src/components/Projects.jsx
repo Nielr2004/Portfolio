@@ -35,7 +35,7 @@ const Projects = () => {
         <div className="card">
           <i className="fas fa-hand-paper fa-2x"></i> {/* Added icon for hand tracking */}
           <h3>ViewVerse</h3>
-          <p>A wovie/weries review and watchlist website (in progress)</p>
+          <p>A movie/series review and watchlist website (in progress)</p>
         </div>
         </a>
       </div>
