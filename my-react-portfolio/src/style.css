@@ -11,6 +11,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 100px; /* prevents content being hidden under fixed nav */
 }
 
 body {
@@ -21,6 +22,7 @@ body {
   line-height: 1.6;
   letter-spacing: 0.3px;
   overflow-x: hidden;
+  max-width: 100vw;
 }
 
 /* ───────────── TYPOGRAPHY ───────────── */
@@ -962,6 +964,9 @@ footer {
 
 /* Mobile devices (max-width: 767px) */
 @media (max-width: 767px) {
+  .menu-toggle {
+    display: flex;
+  }
     nav {
         width: calc(100% - 20px); /* Adjust width for mobile */
         top: 8px; /* Closer to top on mobile */
