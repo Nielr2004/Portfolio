@@ -1,40 +1,35 @@
-// src/main.jsx (or src/App.jsx)
+// src/main.jsx
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App.jsx';
-import './style.css'; // Your main CSS file
-// Your component file (e.g., App.jsx or Home.jsx)
+import App from './App.jsx'; // Ensure this path is correct relative to main.jsx
+import './style.css'; // Ensure this path is correct relative to main.jsx
 
-// ... other imports ...
-import ParticlesBackground from './components/ParticlesBackground'; // Adjust path as needed
-// ...
 // Import AOS CSS
-import 'aos/dist/aos.css'; // The AOS CSS styles for animations
+import 'aos/dist/aos.css'; // Ensure 'aos' is installed and this path is correct
 
 // Import AOS library
-import AOS from 'aos';
+import AOS from 'aos'; // Ensure 'aos' is installed
 
-// Initialize AOS
+// Initialize AOS (Moved here for global initialization, but can also be in App.jsx's useEffect)
 AOS.init({
   // Global settings:
-  disable: false, // accepts following values: 'phone', 'tablet', 'mobile', boolean, expression or function
-  startEvent: 'DOMContentLoaded', // name of the event dispatched on the document, that AOS should initialize on
-  initClassName: 'aos-init', // class applied after initialization
-  animatedClassName: 'aos-animate', // class applied on animation
-  useClassNames: false, // if true, will add `aos-animate` on scroll, instead of `data-aos` properties
-  disableMutationObserver: false, // disables automatic mutations' detections (advanced)
-  debounceDelay: 50, // the delay on debounce used while resizing window (advanced)
-  throttleDelay: 99, // the delay on throttle used while scrolling the page (advanced)
-
+  disable: false,
+  startEvent: 'DOMContentLoaded',
+  initClassName: 'aos-init',
+  animatedClassName: 'aos-animate',
+  useClassNames: false,
+  disableMutationObserver: false,
+  debounceDelay: 50,
+  throttleDelay: 99,
 
   // Settings that can be overridden on per-element basis, by `data-aos-*` attributes:
-  offset: 120, // offset (in px) from the original trigger point
-  delay: 0, // values from 0 to 3000 with step 50ms
-  duration: 1000, // values from 0 to 3000 with step 50ms
-  easing: 'ease-out', // default easing for AOS animations
-  once: true, // whether animation should happen only once - YES, for most portfolio elements
-  mirror: false, // whether elements should animate out while scrolling past them
-  anchorPlacement: 'top-bottom', // defines which position of the element should trigger the animation
+  offset: 120,
+  delay: 0,
+  duration: 1000,
+  easing: 'ease-out',
+  once: true,
+  mirror: false,
+  anchorPlacement: 'top-bottom',
 });
 
 
