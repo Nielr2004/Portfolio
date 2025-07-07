@@ -34,7 +34,7 @@ h1, h2, h3 {
 }
 
 section {
-  padding: 60px 20px;
+  padding: 80px 20px; /* Increased top/bottom padding slightly for more breathing room */
   text-align: center;
   position: relative;
   z-index: 1;
@@ -67,16 +67,12 @@ nav {
   align-items: center; /* Vertically align contents within the link */
 }
 
-/* Updated: Logo size adjusted, hover effect removed */
 .nav-logo {
-  height: 20px; /* <--- Adjusted height to match nav text font size */
+  height: 30px; /* Increased height for better visibility */
   width: auto; /* Maintain aspect ratio */
   vertical-align: middle; /* Helps with alignment */
   margin-right: 8px; /* Space between logo and site name if you have one */
-  /* transition and transform: scale on hover are removed as requested */
 }
-
-/* Removed: .nav-logo:hover rule entirely */
 
 .site-name {
   font-family: 'Bebas Neue', sans-serif;
@@ -118,6 +114,7 @@ nav a::before {
   border-radius: 50%;
   transform: translate(-50%, -50%);
   transition: width 0.5s ease, height 0.5s ease;
+  z-index: -1; /* Ensure it's behind the text */
 }
 
 nav a:hover::before {
@@ -130,6 +127,64 @@ nav a:hover {
   color: #1D3557; /* Dark blue on hover */
   transform: translateY(-2px);
   box-shadow: 0 0 8px rgba(230, 57, 70, 0.2); /* Red accent shadow */
+}
+
+/* Mobile Navigation (Hamburger Menu) - Added transition for menu toggle */
+.menu-toggle {
+    display: none; /* Hidden by default on desktop */
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+    cursor: pointer;
+    z-index: 1001;
+    transition: all 0.3s ease; /* Smooth transition for menu icon */
+}
+
+.menu-toggle span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: #1D3557; /* Dark blue for hamburger lines */
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.menu-toggle.open span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-toggle.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+nav.open ul {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 60px; /* Below the header */
+    left: 0;
+    width: 100%;
+    background: rgba(241, 250, 238, 0.95); /* Cream with more transparency */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    padding: 20px 0;
+    transform: translateY(0); /* Ensure it slides in */
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    opacity: 1;
+}
+
+nav ul.active { /* This class is added by React component */
+    transform: translateY(0);
+    opacity: 1;
+}
+
+nav ul li {
+    margin: 10px 0;
+    text-align: center;
 }
 
 /* ───────────── HOME ───────────── */
@@ -146,9 +201,6 @@ nav a:hover {
   text-align: center;
   background: #F1FAEE;
 }
-
-/* Removed: .quote-image-background as it was set to display: none */
-/* Removed: #home::before and #home.blur::before as they were set to content: none */
 
 .home-quote-image {
   max-width: 100%;
@@ -229,6 +281,7 @@ nav a:hover {
   border-radius: 50%;
   transform: translate(-50%, -50%);
   transition: width 0.5s ease, height 0.5s ease;
+  z-index: -1; /* Ensure it's behind the text */
 }
 
 .button:hover::before {
@@ -820,4 +873,290 @@ footer {
 @keyframes floatArrow {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(4px); }
+}
+
+/* Responsive Adjustments */
+
+/* Tablets and smaller desktops (max-width: 1024px) */
+@media (max-width: 1024px) {
+    section {
+        padding: 60px 20px; /* Adjusted section padding for tablets */
+    }
+
+    h1 {
+        font-size: 3rem; /* Slightly smaller for tablets */
+    }
+
+    h2 {
+        font-size: 2.2rem;
+    }
+
+    .typewriter {
+        font-size: 2.8rem; /* Adjusted for tablets */
+    }
+
+    .home-main-content {
+        gap: 30px;
+    }
+
+    .about-container, .skills-below, #contact {
+        padding: 30px; /* Slightly less padding for tablet sections */
+    }
+
+    .project-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Allow smaller cards */
+        gap: 25px;
+    }
+
+    .icon-badge {
+        width: 90px;
+        height: 90px;
+    }
+    .icon-badge i, .icon-badge img {
+        font-size: 35px;
+        width: 35px;
+        height: 35px;
+    }
+    .icon-badge span {
+        font-size: 12px;
+    }
+
+    .skills-grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+}
+
+/* Mobile devices (max-width: 767px) */
+@media (max-width: 767px) {
+    section {
+        padding: 40px 15px; /* More padding adjustment for mobile */
+    }
+
+    h1 {
+        font-size: 2.5rem;
+        letter-spacing: 1.5px;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+        margin-bottom: 25px;
+    }
+
+    h3 {
+        font-size: 18px;
+    }
+
+    p {
+        font-size: 15px;
+    }
+
+    /* Navigation */
+    nav {
+        padding: 10px 15px;
+    }
+
+    .nav-logo {
+        height: 25px; /* Further adjusted for mobile */
+    }
+
+    nav ul {
+        display: none; /* Hidden by default */
+        flex-direction: column;
+        position: absolute;
+        top: 50px; /* Adjust based on new nav height */
+        left: 0;
+        width: 100%;
+        background: rgba(241, 250, 238, 0.98); /* More opaque for menu */
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        padding: 15px 0;
+        transform: translateY(-100%);
+        transition: transform 0.3s ease-out;
+    }
+
+    nav ul.active {
+        transform: translateY(0);
+        display: flex; /* Show when active */
+    }
+
+    nav ul li {
+        margin: 8px 0;
+    }
+
+    nav ul li a {
+        font-size: 14px;
+        padding: 10px 0; /* Full width clickable area */
+        display: block;
+    }
+
+    .menu-toggle {
+        display: flex; /* Show hamburger */
+    }
+
+    /* Home Section */
+    .home-main-content {
+        flex-direction: column; /* Stack vertically */
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+
+    .home-left, .home-right {
+        min-width: unset; /* Remove min-width to allow full flexibility */
+        width: 100%;
+    }
+
+    .home-quote-image {
+        max-width: 70%; /* Smaller on mobile */
+        margin: 0 auto 20px;
+    }
+
+    .typewriter {
+        font-size: 2.2rem;
+        letter-spacing: 2px;
+    }
+
+    .typewriter-box {
+        padding: 20px 25px;
+    }
+
+    #home p {
+        font-size: 16px;
+        text-align: center;
+    }
+
+    .button {
+        padding: 10px 20px;
+        font-size: 15px;
+    }
+
+    /* About Section */
+    .about-container {
+        flex-direction: column;
+        padding: 25px;
+    }
+
+    .about-container img {
+        width: 180px;
+        height: 180px;
+        margin-bottom: 20px;
+    }
+
+    .about-content {
+        text-align: center;
+    }
+
+    .social-badges {
+        justify-content: center; /* Center social badges on mobile */
+    }
+
+    /* Projects Section */
+    .project-grid {
+        grid-template-columns: 1fr; /* Single column */
+        gap: 20px;
+    }
+
+    .card {
+        padding: 20px;
+    }
+
+    /* Skills Section */
+    .marquee-container {
+        padding: 20px 0;
+    }
+
+    .marquee-track {
+        gap: 15px;
+    }
+
+    .icon-badge {
+        width: 80px;
+        height: 80px;
+        border-radius: 12px;
+    }
+    .icon-badge i, .icon-badge img {
+        font-size: 30px;
+        width: 30px;
+        height: 30px;
+    }
+    .icon-badge span {
+        font-size: 11px;
+    }
+
+    .skills-below {
+        padding: 35px 15px;
+    }
+
+    .skills-below h2 {
+        font-size: 26px;
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr; /* Single column */
+    }
+
+    .skills-grid div {
+        padding: 15px;
+        font-size: 14px;
+    }
+
+    /* Contact Section */
+    #contact {
+        padding: 40px 20px;
+        margin: 40px auto;
+    }
+
+    #contact h2 {
+        font-size: 26px;
+    }
+
+    #contact input, #contact textarea {
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    #contact button {
+        padding: 12px 25px;
+        font-size: 15px;
+    }
+
+    .flash {
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    .contact-or p {
+        font-size: 15px;
+    }
+
+    .footer-socials {
+        flex-direction: column;
+        gap: 12px;
+    }
+}
+
+/* Smallest mobile devices (max-width: 480px) */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    .typewriter {
+        font-size: 1.8rem;
+    }
+
+    .home-quote-image {
+        max-width: 85%;
+    }
+
+    .icon-badge {
+        width: 70px;
+        height: 70px;
+    }
+    .icon-badge i, .icon-badge img {
+        font-size: 25px;
+        width: 25px;
+        height: 25px;
+    }
+    .icon-badge span {
+        font-size: 10px;
+    }
 }
