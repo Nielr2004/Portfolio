@@ -43,17 +43,24 @@ section {
 /* ───────────── NAVIGATION ───────────── */
 nav {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
+  top: 15px; /* Pushed down slightly to appear floating */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Adjust for centering */
+  width: calc(100% - 40px); /* Slightly narrower than full width */
+  max-width: 900px; /* Reduced max-width to make it smaller in length */
   z-index: 999;
   background: rgba(241, 250, 238, 0.9); /* Cream with slight transparency */
   backdrop-filter: blur(8px);
-  padding: 12px 25px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 20px; /* Kept as per user's request */
+  padding-right: 20px; /* Kept as per user's request */
   display: flex;
   justify-content: space-between; /* Pushes logo left, links right */
   align-items: center; /* Vertically aligns items */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); /* Enhanced shadow for floating effect */
+  border-radius: 15px; /* Rounded corners for floating look */
+  transition: all 0.3s ease; /* Smooth transition for changes */
 }
 
 .nav-left {
@@ -129,6 +136,26 @@ nav a:hover {
   box-shadow: 0 0 8px rgba(230, 57, 70, 0.2); /* Red accent shadow */
 }
 
+/* Specific styling for the resume download link */
+.resume-download-link {
+  display: flex; /* To align icon and text horizontally */
+  align-items: center; /* Vertically align them */
+  gap: 5px; /* Space between icon and text */
+  padding: 8px 12px; /* Adjusted padding for the link itself */
+}
+
+.resume-icon {
+  width: 20px; /* Size of the SVG icon */
+  height: 20px;
+  color: #1D3557; /* Default icon color */
+  transition: color 0.3s ease;
+}
+
+.resume-download-link:hover .resume-icon {
+  color: #E63946; /* Change icon color on hover */
+}
+
+
 /* Mobile Navigation (Hamburger Menu) - Added transition for menu toggle */
 .menu-toggle {
     display: none; /* Hidden by default on desktop */
@@ -169,12 +196,13 @@ nav.open ul {
     top: 60px; /* Below the header */
     left: 0;
     width: 100%;
-    background: rgba(241, 250, 238, 0.95); /* Cream with more transparency */
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    background: rgba(241, 250, 238, 0.98); /* Cream with more transparency */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
     padding: 20px 0;
     transform: translateY(0); /* Ensure it slides in */
     transition: transform 0.3s ease-out, opacity 0.3s ease-out;
     opacity: 1;
+    border-radius: 0 0 15px 15px; /* Match nav bar radius at bottom */
 }
 
 nav ul.active { /* This class is added by React component */
@@ -879,6 +907,12 @@ footer {
 
 /* Tablets and smaller desktops (max-width: 1024px) */
 @media (max-width: 1024px) {
+    nav {
+        width: calc(100% - 30px); /* Adjust width for tablets */
+        top: 10px; /* Slightly closer to top */
+        border-radius: 10px;
+    }
+
     section {
         padding: 60px 20px; /* Adjusted section padding for tablets */
     }
@@ -928,6 +962,12 @@ footer {
 
 /* Mobile devices (max-width: 767px) */
 @media (max-width: 767px) {
+    nav {
+        width: calc(100% - 20px); /* Adjust width for mobile */
+        top: 8px; /* Closer to top on mobile */
+        border-radius: 10px;
+    }
+
     section {
         padding: 40px 15px; /* More padding adjustment for mobile */
     }
@@ -960,36 +1000,14 @@ footer {
     }
 
     nav ul {
-        display: none; /* Hidden by default */
-        flex-direction: column;
-        position: absolute;
         top: 50px; /* Adjust based on new nav height */
-        left: 0;
-        width: 100%;
-        background: rgba(241, 250, 238, 0.98); /* More opaque for menu */
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-        padding: 15px 0;
-        transform: translateY(-100%);
-        transition: transform 0.3s ease-out;
-    }
-
-    nav ul.active {
-        transform: translateY(0);
-        display: flex; /* Show when active */
-    }
-
-    nav ul li {
-        margin: 8px 0;
+        border-radius: 0 0 10px 10px; /* Match mobile nav bar radius */
     }
 
     nav ul li a {
         font-size: 14px;
         padding: 10px 0; /* Full width clickable area */
         display: block;
-    }
-
-    .menu-toggle {
-        display: flex; /* Show hamburger */
     }
 
     /* Home Section */
@@ -1070,7 +1088,6 @@ footer {
     .icon-badge {
         width: 80px;
         height: 80px;
-        border-radius: 12px;
     }
     .icon-badge i, .icon-badge img {
         font-size: 30px;
