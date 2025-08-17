@@ -1,5 +1,5 @@
 import React from 'react';
-// Import SVG icons
+// Import all your skill icons
 import illustratorSvg from '../assets/icons/illustrator.svg';
 import powerbiSvg from '../assets/icons/powerbi.png';
 import CSvg from '../assets/icons/c.png';
@@ -20,84 +20,92 @@ import githubSvg from '../assets/icons/github.png';
 import aiSvg from '../assets/icons/ai.png';
 import dataSvg from '../assets/icons/data.png';
 
-
+// Define the skills data array
 const skillsData = [
-  { className: 'c', img: CSvg, text: 'C', title: 'Systems and low-level stuff!' },
-  { className: 'css', img: cssSvg, text: 'CSS3', title: 'I make it pretty 💅' },
-  { className: 'figma',img: figmaSvg, text: 'Figma', title: 'UI/UX playground' },
-  { className: 'html', img: htmlSvg, text: 'HTML5', title: 'The skeleton of the web' },
-  { className: 'illustrator', img: illustratorSvg, text: 'Illustrator', title: 'Vector art wizard ✏️' },
-  { className: 'java', img: javaSvg, text: 'Java', title: 'Object-oriented everything' },
-  { className: 'js', img: jsSvg, text: 'JavaScript', title: 'Making the web interactive' },
-  { className: 'mysql', img: sqlSvg, text: 'MySQL', title: 'Structured data lover' },
-  { className: 'python', img: pythonSvg, text: 'Python', title: 'Versatile & elegant 🐍' },
-  { className: 'ai', img: aiSvg, text: 'AI/ML', title: 'Smarter machines every day' },
-  { className: 'data', img: dataSvg, text: 'Data Analysis', title: 'Charts, insights, and numbers' },
-  { className: 'powerbi', img: powerbiSvg, icon: null, text: 'Power BI', title: 'Dashboarding Ninja 📊' },
-  { className: 'react', img: reactSvg, text: 'React', title: 'Frontend magic' },
-  { className: 'flask', img: flaskSvg, text: 'Flask', title: 'Backend magic' },
-  { classname: 'git', img: gitSvg, icon: null, text: 'Git', title: 'Version control wizard' },
-  { classname: 'github', img: githubSvg, icon: null, text: 'GitHub', title: 'Collaboration hub' },
-  { classname: 'node', img: nodeSvg, text: 'Node.js', title: 'Server-side magic' },
-  { classname: 'php', img: phpSvg, text: 'PHP', title: 'Server-side magic' },
-  { classname: 'mongodb', img: mongodbSvg, text: 'MongoDB', title: 'Database wizard' },
+  { img: htmlSvg, text: 'HTML5' },
+  { img: cssSvg, text: 'CSS3' },
+  { img: jsSvg, text: 'JavaScript' },
+  { img: reactSvg, text: 'React' },
+  { img: nodeSvg, text: 'Node.js' },
+  { img: pythonSvg, text: 'Python' },
+  { img: flaskSvg, text: 'Flask' },
+  { img: javaSvg, text: 'Java' },
+  { img: sqlSvg, text: 'MySQL' },
+  { img: mongodbSvg, text: 'MongoDB' },
+  { img: gitSvg, text: 'Git' },
+  { img: githubSvg, text: 'GitHub' },
+  { img: figmaSvg, text: 'Figma' },
+  { img: illustratorSvg, text: 'Illustrator' },
+  { img: powerbiSvg, text: 'Power BI' },
+  { img: aiSvg, text: 'AI/ML' },
+  { img: dataSvg, text: 'Data Analysis' },
+  { img: CSvg, text: 'C' },
+  { img: phpSvg, text: 'PHP' },
 ];
 
 const Skills = () => {
+  // Duplicate the array for a seamless marquee loop
+  const marqueeSkills = [...skillsData, ...skillsData];
+
   return (
-    <section id="skills" data-aos="fade-up">
-      <h2>Technologies I Use</h2>
-      <div className="marquee-container">
-        <div className="marquee-track">
-          {Array(2).fill(skillsData).flat().map((skill, index) => (
-            <div className={`icon-badge ${skill.className}`} title={skill.title} key={index}>
-              {skill.icon && <i className={skill.icon}></i>}
-              {skill.img && <img src={skill.img} alt={skill.text} />}
-              <span>{skill.text}</span>
-            </div>
-          ))}
+    <section id="skills" data-aos="fade-up" className="py-20 overflow-x-hidden">
+      <div className="text-center mb-12">
+        <h2 className="text-4xl font-bebas uppercase tracking-wider text-primary">Technologies I Use</h2>
+      </div>
+
+      {/* Marquee Container */}
+      <div className="relative w-full py-8 bg-white/40 backdrop-blur-md border-y border-white/30">
+        <div className="mx-auto w-full overflow-hidden">
+          <div className="animate-marquee flex">
+            {marqueeSkills.map((skill, index) => (
+              <div key={index} className="flex-shrink-0 w-28 h-28 mx-4 flex flex-col items-center justify-center bg-white/50 rounded-2xl shadow-md
+                                          transition-transform duration-300 hover:scale-110 hover:-rotate-6 hover:shadow-lg hover:shadow-accent/20">
+                <img src={skill.img} alt={`${skill.text} icon`} className="h-10 w-10 mb-2 object-contain" />
+                <span className="text-xs font-semibold uppercase tracking-wider text-primary">{skill.text}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
-      <section className="skills-below" data-aos="fade-up">
-        <h2>Skills I'm Practicing</h2>
+      {/* Skills Below Marquee */}
+      <div data-aos="fade-up" className="max-w-4xl mx-auto mt-20 px-4">
+        <h2 className="text-3xl font-bebas uppercase tracking-wider text-primary text-center mb-12">My Core Competencies</h2>
+        
+        <div className="space-y-10">
+          {/* Frontend Category */}
+          <div>
+            <h3 className="text-2xl font-bebas tracking-wider text-primary mb-4 text-left">💻 Frontend & UI/UX</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="bg-white/40 backdrop-blur-sm p-4 rounded-lg font-semibold text-primary/90 text-center transition-transform duration-300 hover:-translate-y-1 hover:rotate-2 hover:shadow-md hover:shadow-accent/10">🌐 Website Development (HTML, CSS, JS, React)</div>
+              <div className="bg-white/40 backdrop-blur-sm p-4 rounded-lg font-semibold text-primary/90 text-center transition-transform duration-300 hover:-translate-y-1 hover:rotate-2 hover:shadow-md hover:shadow-accent/10">🎨 UI/UX Design with Figma</div>
+              <div className="bg-white/40 backdrop-blur-sm p-4 rounded-lg font-semibold text-primary/90 text-center transition-transform duration-300 hover:-translate-y-1 hover:rotate-2 hover:shadow-md hover:shadow-accent/10">🖌️ Graphic Design & Illustration</div>
+              <div className="bg-white/40 backdrop-blur-sm p-4 rounded-lg font-semibold text-primary/90 text-center transition-transform duration-300 hover:-translate-y-1 hover:rotate-2 hover:shadow-md hover:shadow-accent/10">📱 Responsive Web Design</div>
+            </div>
+          </div>
 
-        <div className="skills-category">
-          <h3>💻 Frontend & UI/UX</h3>
-          <div className="skills-grid">
-            <div>🌐 Website Development (HTML, CSS, JS, Flask)</div>
-            <div>🎨 UI/UX Design with Figma</div>
-            <div>🖌️ Graphic Design & Illustration</div>
-            <div>📱 Responsive Layouts</div>
+          {/* Backend Category */}
+          <div>
+            <h3 className="text-2xl font-bebas tracking-wider text-primary mb-4 text-left">⚙️ Backend & DevOps</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="bg-white/40 backdrop-blur-sm p-4 rounded-lg font-semibold text-primary/90 text-center transition-transform duration-300 hover:-translate-y-1 hover:rotate-2 hover:shadow-md hover:shadow-accent/10">🛠️ Git & GitHub Workflow</div>
+              <div className="bg-white/40 backdrop-blur-sm p-4 rounded-lg font-semibold text-primary/90 text-center transition-transform duration-300 hover:-translate-y-1 hover:rotate-2 hover:shadow-md hover:shadow-accent/10">🗃️ MySQL & MongoDB</div>
+              <div className="bg-white/40 backdrop-blur-sm p-4 rounded-lg font-semibold text-primary/90 text-center transition-transform duration-300 hover:-translate-y-1 hover:rotate-2 hover:shadow-md hover:shadow-accent/10">🔧 Flask Backend Development</div>
+              <div className="bg-white/40 backdrop-blur-sm p-4 rounded-lg font-semibold text-primary/90 text-center transition-transform duration-300 hover:-translate-y-1 hover:rotate-2 hover:shadow-md hover:shadow-accent/10">⚡ Node.js Fundamentals</div>
+            </div>
+          </div>
+
+          {/* Data Category */}
+          <div>
+            <h3 className="text-2xl font-bebas tracking-wider text-primary mb-4 text-left">📊 Data & Machine Learning</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="bg-white/40 backdrop-blur-sm p-4 rounded-lg font-semibold text-primary/90 text-center transition-transform duration-300 hover:-translate-y-1 hover:rotate-2 hover:shadow-md hover:shadow-accent/10">📈 Data Analysis (Pandas, NumPy)</div>
+              <div className="bg-white/40 backdrop-blur-sm p-4 rounded-lg font-semibold text-primary/90 text-center transition-transform duration-300 hover:-translate-y-1 hover:rotate-2 hover:shadow-md hover:shadow-accent/10">🤖 Machine Learning Projects</div>
+              <div className="bg-white/40 backdrop-blur-sm p-4 rounded-lg font-semibold text-primary/90 text-center transition-transform duration-300 hover:-translate-y-1 hover:rotate-2 hover:shadow-md hover:shadow-accent/10">📉 Power BI Visualization</div>
+            </div>
           </div>
         </div>
-
-        <div className="skills-category">
-          <h3>⚙️ Backend & DevOps</h3>
-          <div className="skills-grid">
-            <div>🛠️ Git & GitHub Workflow</div>
-            <div>🗃️ MySQL & MongoDB</div>
-            <div>🔧 Flask Backend Development</div>
-          </div>
-        </div>
-
-        <div className="skills-category">
-          <h3>📊 Data & Machine Learning</h3>
-          <div className="skills-grid">
-            <div>📈 Data Analysis (Pandas, NumPy)</div>
-            <div>🤖 Machine Learning Projects</div>
-            <div>📉 Power BI Visualization</div>
-          </div>
-        </div>
-
-        <div className="skills-category">
-          <h3>🧠 Soft Skills</h3>
-          <div className="skills-grid">
-            <div>🧩 Problem Solving & Logic Building</div>
-            <div>🗣️ Communication Skills</div>
-          </div>
-        </div>
-      </section>
+      </div>
     </section>
   );
 };
