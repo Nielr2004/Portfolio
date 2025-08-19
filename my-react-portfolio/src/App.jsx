@@ -1,3 +1,4 @@
+// src/App.jsx
 import React, { useEffect } from 'react';
 import './style.css';
 import Home from './components/Home';
@@ -6,7 +7,9 @@ import Projects from './components/Projects';
 import Skills from './components/Skills';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import FloatingNav from './components/FloatingNav'; // <-- Import the new component
+import FloatingNav from './components/FloatingNav';
+import PortfolioChatbot from './components/PortfolioChatbot';
+import CustomCursor from './components/CustomCursor';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
@@ -22,6 +25,7 @@ function App() {
 
   return (
     <>
+      <CustomCursor />
       <Home />
       <main>
         <About />
@@ -30,7 +34,8 @@ function App() {
         <Contact />
       </main>
       <Footer />
-      <FloatingNav /> {/* <-- Add the floating nav here */}
+      <FloatingNav />
+      <PortfolioChatbot />
     </>
   );
 }

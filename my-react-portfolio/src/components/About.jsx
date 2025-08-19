@@ -3,30 +3,30 @@ import profileImage from '../assets/images/niel2.jpg'; // Your profile image
 
 const About = () => {
   return (
-    <section id="about" data-aos="fade-up" className="py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto bg-white/60 backdrop-blur-lg rounded-2xl shadow-lg p-8 md:p-12">
-        <h2 className="text-4xl font-bebas uppercase tracking-wider text-primary text-center mb-10">
-          About Me
-        </h2>
-        <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
-          <div className="flex-shrink-0">
+    <section id="about" data-aos="fade-up">
+      <div className="about-container">
+        <h2 className="about-title">About Me</h2>
+        <div className="about-content">
+          <div className="about-image-container">
             <img 
               src={profileImage} 
               alt="Snehashis Roy" 
-              className="w-48 h-48 md:w-56 md:h-56 object-cover rounded-full shadow-lg border-4 border-highlight
-                         transition-transform duration-300 hover:scale-105 hover:rotate-3"
+              className="about-profile-image"
             />
           </div>
-          <div className="text-center md:text-left text-primary/90">
-            <p className="text-lg mb-4">
-              Hey, I'm Snehashis Roy — a CSE student brewing code and creativity at The Assam Kaziranga University.
-              I love building smart and elegant solutions, whether it’s crafting APIs with Flask, designing clean UIs,
-              analyzing data with Python, or training a curious little AI model.
+          <div className="about-text-container">
+            <p className="about-description">
+              Hello! I'm Snehashis Roy, a Computer Science Engineering student at The Assam Kaziranga University with a passion for building innovative and beautiful web experiences. I thrive at the intersection of logic and design, transforming complex problems into elegant, user-friendly solutions.
             </p>
-            <p className="text-lg">
-              When I’m not debugging with coffee in hand ☕, I’m busy connecting logic with design — because I believe
-              tech should be both intelligent and beautiful.
+            <p className="about-description">
+              Whether I'm developing a full-stack application, designing a sleek UI, or diving into data, I'm driven by a desire to create technology that is both intelligent and intuitive. I'm always eager to learn and grow, and I'm excited to see where my journey in tech takes me next.
             </p>
+            <div className="about-skills">
+              <span className="skill-badge">Web Development</span>
+              <span className="skill-badge">UI/UX Design</span>
+              <span className="skill-badge">Data Analysis</span>
+              <span className="skill-badge">AI/ML</span>
+            </div>
           </div>
         </div>
       </div>

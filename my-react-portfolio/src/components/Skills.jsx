@@ -1,4 +1,10 @@
 import React from 'react';
+import Slider from 'react-slick';
+
+// Import slick-carousel styles
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
+
 // Import all your skill icons
 import illustratorSvg from '../assets/icons/illustrator.svg';
 import powerbiSvg from '../assets/icons/powerbi.png';
@@ -20,7 +26,6 @@ import githubSvg from '../assets/icons/github.png';
 import aiSvg from '../assets/icons/ai.png';
 import dataSvg from '../assets/icons/data.png';
 
-// Define the skills data array
 const skillsData = [
   { img: htmlSvg, text: 'HTML5' },
   { img: cssSvg, text: 'CSS3' },
@@ -44,64 +49,89 @@ const skillsData = [
 ];
 
 const Skills = () => {
-  // Duplicate the array for a seamless marquee loop
-  const marqueeSkills = [...skillsData, ...skillsData];
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 5000,
+    autoplay: true,
+    autoplaySpeed: 0,
+    cssEase: 'linear',
+    slidesToShow: 6,
+    slidesToScroll: 1,
+    pauseOnHover: false,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 4,
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 3,
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 2,
+        }
+      }
+    ]
+  };
 
   return (
-    <section id="skills" data-aos="fade-up" className="py-20 overflow-x-hidden">
-      <div className="text-center mb-12">
-        <h2 className="text-4xl font-bebas uppercase tracking-wider text-primary">Technologies I Use</h2>
-      </div>
-
-      {/* Marquee Container */}
-      <div className="relative w-full py-8 bg-white/40 backdrop-blur-md border-y border-white/30">
-        <div className="mx-auto w-full overflow-hidden">
-          <div className="animate-marquee flex">
-            {marqueeSkills.map((skill, index) => (
-              <div key={index} className="flex-shrink-0 w-28 h-28 mx-4 flex flex-col items-center justify-center bg-white/50 rounded-2xl shadow-md
-                                          transition-transform duration-300 hover:scale-110 hover:-rotate-6 hover:shadow-lg hover:shadow-accent/20">
-                <img src={skill.img} alt={`${skill.text} icon`} className="h-10 w-10 mb-2 object-contain" />
-                <span className="text-xs font-semibold uppercase tracking-wider text-primary">{skill.text}</span>
+    <section id="skills" data-aos="fade-up">
+      <div className="skills-container">
+        <h2 className="skills-title">Technologies I Use</h2>
+        <div className="slider-container">
+          <Slider {...settings}>
+            {skillsData.map((skill, index) => (
+              <div key={index} className="skill-slide">
+                <div className="skill-card">
+                  <img src={skill.img} alt={`${skill.text} icon`} className="skill-icon" />
+                  <span className="skill-text">{skill.text}</span>
+                </div>
               </div>
             ))}
-          </div>
+          </Slider>
         </div>
-      </div>
-
-      {/* Skills Below Marquee */}
-      <div data-aos="fade-up" className="max-w-4xl mx-auto mt-20 px-4">
-        <h2 className="text-3xl font-bebas uppercase tracking-wider text-primary text-center mb-12">My Core Competencies</h2>
         
-        <div className="space-y-10">
-          {/* Frontend Category */}
-          <div>
-            <h3 className="text-2xl font-bebas tracking-wider text-primary mb-4 text-left">💻 Frontend & UI/UX</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="bg-white/40 backdrop-blur-sm p-4 rounded-lg font-semibold text-primary/90 text-center transition-transform duration-300 hover:-translate-y-1 hover:rotate-2 hover:shadow-md hover:shadow-accent/10">🌐 Website Development (HTML, CSS, JS, React)</div>
-              <div className="bg-white/40 backdrop-blur-sm p-4 rounded-lg font-semibold text-primary/90 text-center transition-transform duration-300 hover:-translate-y-1 hover:rotate-2 hover:shadow-md hover:shadow-accent/10">🎨 UI/UX Design with Figma</div>
-              <div className="bg-white/40 backdrop-blur-sm p-4 rounded-lg font-semibold text-primary/90 text-center transition-transform duration-300 hover:-translate-y-1 hover:rotate-2 hover:shadow-md hover:shadow-accent/10">🖌️ Graphic Design & Illustration</div>
-              <div className="bg-white/40 backdrop-blur-sm p-4 rounded-lg font-semibold text-primary/90 text-center transition-transform duration-300 hover:-translate-y-1 hover:rotate-2 hover:shadow-md hover:shadow-accent/10">📱 Responsive Web Design</div>
+        {/* Core Competencies Section */}
+        <div className="core-competencies" data-aos="fade-up">
+          <h2 className="skills-title">My Core Competencies</h2>
+          <div className="competency-categories">
+            {/* Frontend Category */}
+            <div className="competency-category">
+              <h3>💻 Frontend & UI/UX</h3>
+              <div className="competency-grid">
+                <div className="competency-card">🌐 Website Development (HTML, CSS, JS, React)</div>
+                <div className="competency-card">🎨 UI/UX Design with Figma</div>
+                <div className="competency-card">🖌️ Graphic Design & Illustration</div>
+                <div className="competency-card">📱 Responsive Web Design</div>
+              </div>
             </div>
-          </div>
 
-          {/* Backend Category */}
-          <div>
-            <h3 className="text-2xl font-bebas tracking-wider text-primary mb-4 text-left">⚙️ Backend & DevOps</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="bg-white/40 backdrop-blur-sm p-4 rounded-lg font-semibold text-primary/90 text-center transition-transform duration-300 hover:-translate-y-1 hover:rotate-2 hover:shadow-md hover:shadow-accent/10">🛠️ Git & GitHub Workflow</div>
-              <div className="bg-white/40 backdrop-blur-sm p-4 rounded-lg font-semibold text-primary/90 text-center transition-transform duration-300 hover:-translate-y-1 hover:rotate-2 hover:shadow-md hover:shadow-accent/10">🗃️ MySQL & MongoDB</div>
-              <div className="bg-white/40 backdrop-blur-sm p-4 rounded-lg font-semibold text-primary/90 text-center transition-transform duration-300 hover:-translate-y-1 hover:rotate-2 hover:shadow-md hover:shadow-accent/10">🔧 Flask Backend Development</div>
-              <div className="bg-white/40 backdrop-blur-sm p-4 rounded-lg font-semibold text-primary/90 text-center transition-transform duration-300 hover:-translate-y-1 hover:rotate-2 hover:shadow-md hover:shadow-accent/10">⚡ Node.js Fundamentals</div>
+            {/* Backend Category */}
+            <div className="competency-category">
+              <h3>⚙️ Backend & DevOps</h3>
+              <div className="competency-grid">
+                <div className="competency-card">🛠️ Git & GitHub Workflow</div>
+                <div className="competency-card">🗃️ MySQL & MongoDB</div>
+                <div className="competency-card">🔧 Flask Backend Development</div>
+                <div className="competency-card">⚡ Node.js Fundamentals</div>
+              </div>
             </div>
-          </div>
 
-          {/* Data Category */}
-          <div>
-            <h3 className="text-2xl font-bebas tracking-wider text-primary mb-4 text-left">📊 Data & Machine Learning</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="bg-white/40 backdrop-blur-sm p-4 rounded-lg font-semibold text-primary/90 text-center transition-transform duration-300 hover:-translate-y-1 hover:rotate-2 hover:shadow-md hover:shadow-accent/10">📈 Data Analysis (Pandas, NumPy)</div>
-              <div className="bg-white/40 backdrop-blur-sm p-4 rounded-lg font-semibold text-primary/90 text-center transition-transform duration-300 hover:-translate-y-1 hover:rotate-2 hover:shadow-md hover:shadow-accent/10">🤖 Machine Learning Projects</div>
-              <div className="bg-white/40 backdrop-blur-sm p-4 rounded-lg font-semibold text-primary/90 text-center transition-transform duration-300 hover:-translate-y-1 hover:rotate-2 hover:shadow-md hover:shadow-accent/10">📉 Power BI Visualization</div>
+            {/* Data Category */}
+            <div className="competency-category">
+              <h3>📊 Data & Machine Learning</h3>
+              <div className="competency-grid">
+                <div className="competency-card">📈 Data Analysis (Pandas, NumPy)</div>
+                <div className="competency-card">🤖 Machine Learning Projects</div>
+                <div className="competency-card">📉 Power BI Visualization</div>
+              </div>
             </div>
           </div>
         </div>

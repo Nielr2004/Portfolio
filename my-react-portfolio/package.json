@@ -19,7 +19,11 @@
     "react": "^19.1.0",
     "react-chatbotify": "^2.3.0",
     "react-dom": "^19.1.0",
-    "react-social-icons": "^6.24.0"
+    "react-parallax-tilt": "^1.7.304",
+    "react-slick": "^0.31.0",
+    "react-social-icons": "^6.24.0",
+    "slick-carousel": "^1.8.1",
+    "styled-components": "^6.1.19"
   },
   "devDependencies": {
     "@eslint/js": "^9.29.0",

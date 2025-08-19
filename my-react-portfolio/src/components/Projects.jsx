@@ -1,57 +1,70 @@
+// src/components/Projects.jsx
 import React from 'react';
+import Card from './Card'; // 1. Import the new Card component
+import styled from 'styled-components';
+
+// Create a styled grid for the projects
+const ProjectGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+`;
 
 const Projects = () => {
+  const projectData = [
+    {
+      href: "https://github.com/notorious0631/Fast-Track.git",
+      icon: "fas fa-user-lock",
+      title: "Face Track+",
+      description: "Smart attendance using OpenCV, Tkinter and Arduino",
+      aosDelay: "100"
+    },
+    {
+      href: "https://github.com/Nielr2004/Portfolio.git",
+      icon: "fas fa-laptop-code",
+      title: "This Portfolio",
+      description: "A modern, animated portfolio built with React",
+      aosDelay: "200"
+    },
+    {
+      icon: "fas fa-chart-bar",
+      title: "Netflix Data Visualization",
+      description: "Power BI dashboard for Netflix movie/series analysis",
+      aosDelay: "300"
+    },
+    {
+      href: "https://github.com/Nielr2004/Basic-handgesture-volume-control.git",
+      icon: "fas fa-hand-paper",
+      title: "Hands-on volume rocker",
+      description: "Python script for a finger tracking volume rocker",
+      aosDelay: "400"
+    },
+    {
+      href: "https://github.com/Nielr2004/Movie-review-website.git",
+      icon: "fas fa-film",
+      title: "ViewVerse",
+      description: "A movie/series review and watchlist website (in progress)",
+      aosDelay: "500"
+    }
+  ];
+
   return (
     <section id="projects">
-      <h2>Projects</h2>
-      <div className="project-grid">
-        {/* Project Card 1 */}
-        <a href="https://github.com/notorious0631/Fast-Track.git" target="_blank" rel="noopener noreferrer" className="card-link"
-           data-aos="fade-up" data-aos-delay="100"> {/* Stagger delay */}
-          <div className="card">
-            <i className="fas fa-user-lock fa-2x"></i>
-            <h3>Face Track+</h3>
-            <p>Smart attendance using OpenCV, Tkinter and Arduino</p>
-          </div>
-        </a>
-        
-        {/* Project Card 2 */}
-        <a href="https://github.com/Nielr2004/Portfolio.git" target="_blank" rel="noopener noreferrer" className="card-link"
-           data-aos="fade-up" data-aos-delay="200"> {/* Stagger delay */}
-          <div className="card">
-            <i className="fas fa-laptop-code fa-2x"></i>
-            <h3>This Portfolio</h3>
-            <p>One-page Flask site with smooth scroll</p>
-          </div>
-        </a>
-
-        {/* Project Card 3 */}
-        <div className="card" data-aos="fade-up" data-aos-delay="300"> {/* Stagger delay */}
-          <i className="fas fa-chart-bar fa-2x"></i>
-          <h3>Netflix Data Visualization</h3>
-          <p>Power BI dashboard for Netflix movie/series analysis</p>
-        </div>
-
-        {/* Project Card 4 */}
-        <a href="https://github.com/Nielr2004/Basic-handgesture-volume-control.git" target="_blank" rel="noopener noreferrer" className="card-link"
-           data-aos="fade-up" data-aos-delay="400"> {/* Stagger delay */}
-          <div className="card">
-            <i className="fas fa-hand-paper fa-2x"></i>
-            <h3>Hands-on volume rocker</h3>
-            <p>Python script for a finger tracking volume rocker</p>
-          </div>
-        </a>
-        
-        {/* Project Card 5 */}
-        <a href="https://github.com/Nielr2004/Movie-review-website.git" target="_blank" rel="noopener noreferrer" className="card-link"
-           data-aos="fade-up" data-aos-delay="500"> {/* Stagger delay */}
-          <div className="card">
-            <i className="fas fa-film fa-2x"></i>
-            <h3>ViewVerse</h3>
-            <p>A movie/series review and watchlist website (in progress)</p>
-          </div>
-        </a>
-      </div>
+      <h2 className="skills-title">Projects</h2>
+      <ProjectGrid>
+        {projectData.map((project, index) => (
+          <Card 
+            key={index}
+            href={project.href}
+            icon={project.icon}
+            title={project.title}
+            description={project.description}
+            aosDelay={project.aosDelay}
+          />
+        ))}
+      </ProjectGrid>
     </section>
   );
 };
